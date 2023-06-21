@@ -15,9 +15,7 @@ function Navigation() {
     <NavigationContainer>
     <Tab.Navigator>
       <Tab.Screen name="Home" component={Home}>
-      <StackHome.Navigator>
-        <StackHome.Screen name="Ingreso" children={Ingreso}/>
-       </StackHome.Navigator>
+     
       </Tab.Screen>
       <Tab.Screen name="Prueba" component={Categorias} />
     </Tab.Navigator>
