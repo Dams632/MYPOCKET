@@ -1,6 +1,6 @@
-import type { Theme } from "@react-navigation/native";
 
-export const theme: Theme ={
+
+export const theme ={
     dark: true,
     colors: {
         primary: '#0A84FF',
@@ -9,5 +9,6 @@ export const theme: Theme ={
         text: '#FFFFFF',
         border: '#262629',
         notification: '#0A84FF',
+        error: 'red',
     },
 }
