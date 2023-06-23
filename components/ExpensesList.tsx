@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight, Alert, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableHighlight, Alert, TouchableWithoutFeedback, ScrollView, FlatList } from 'react-native';
 import { GrupoGastos } from '../types/grupo-gastos';
 import { GastosRow } from './GastosRow';
 import { theme } from '../themes/inex';
@@ -12,28 +12,13 @@ type Props ={
 
 export const ExpensesList = ({groups}: Props) => {
   return(
-    <ScrollView>
-  <View style={{
-    display:'flex', 
-    flexDirection: 'column',
-    overflow: 'scroll',
-    paddingHorizontal: 16,
     
-    }}>
-      <View style={{display:'flex', alignItems:'center',flexDirection:'row', marginBottom:16, justifyContent:'center'}}>
-        <Text style={{color:theme.colors.textPrimary, fontSize:17}}>Total de:</Text>
-        <TouchableOpacity style={{marginLeft:16}}>
-          <Text style={{color:theme.colors.primary, fontSize:17}}>Esta semana</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={{display:'flex', flexDirection:'row',alignItems:'flex-start', justifyContent:'center',marginBottom:16}}>
-        <Text style={{color:theme.colors.textSecondary,fontSize:17,marginTop:2}}>$</Text>
-        <Text style={{color:theme.colors.textPrimary, fontSize:30, marginLeft:2,fontWeight:'600'}}>353535</Text>
-      </View>
-    
-    {groups.map(({day,expenses,total})=>(
-      
-      <View key={day} style={{display:'flex', flexDirection:'column', marginBottom:22}}>
+  
+    <FlatList
+      data={groups}
+      keyExtractor={(item)=> item.day}
+      renderItem={({item:{day,expenses,total}})=>(
+        <View style={{display:'flex', flexDirection:'column', marginBottom:22}}>
         <Text style={{marginBottom:4, color: theme.colors.textPrimary, fontSize:17, fontWeight:'600'}}> {day}</Text>
         <View
         style={{
@@ -64,11 +49,11 @@ export const ExpensesList = ({groups}: Props) => {
         
 
       </View>
-      
-    ))}
 
-  </View>
-  </ScrollView>
+      )}
+    />
+
+ 
 )
 }
 

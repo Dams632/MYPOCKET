@@ -185,8 +185,10 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
             </TouchableOpacity>
             
         </KeyboardAvoidingView>
+        
         <BottomSheet ref={sheetRef} index={-1} handleIndicatorStyle={{backgroundColor:'#FFFFFF55'}} handleStyle={{backgroundColor: theme.colors.card
-         }} enablePanDownToClose snapPoints={snapPoints}>
+         }} enableContentPanningGesture enablePanDownToClose snapPoints={snapPoints}>
+            
             {sheetView === 'recurrence' && (
                 <BottomSheetFlatList
                 style={{

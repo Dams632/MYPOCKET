@@ -35,7 +35,7 @@ export const GastosRow= ({expense}:Props)=>{
                 <Text style={{
                     fontSize: 17,
                     color: theme.colors.textSecondary
-                }}>{expense.date.getHours()}:{expense.date.getMinutes()}</Text>
+                }}>{expense.date.getHours()}:{`${expense.date.getMinutes()}`.padStart(2,'0')}</Text>
             </View>
         </View>
     );
