@@ -15,7 +15,7 @@ import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 
  const Ingresar = () => {
     const [Amount,setAmount]= React.useState('')
-    const [recurrence,setRecurrence]= React.useState(Recurrence.None)
+    const [recurrence,setRecurrence]= React.useState(Recurrence.Ninguno)
     const [category,setCategory]= React.useState('')
     const snapPoints = useMemo(()=> ['25%','50%','75%'],[])
     const sheetRef = useRef<BottomSheet>(null)
