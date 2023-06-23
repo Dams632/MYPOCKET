@@ -14,7 +14,13 @@ const Settings = ({navigation}) => {
           onClick={() => {
             navigation.navigate('Categorias');
           }}
-        />
+        /><ListItem
+        label='Ahorro' 
+        detail={<Entypo name="chevron-thin-right" color='white' size={20} />}
+        onClick={() => {
+          navigation.navigate('Ahorro');
+        }}
+      />
     </View>
   );
 }

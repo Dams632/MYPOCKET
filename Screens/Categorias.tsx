@@ -4,7 +4,7 @@ import { View,Button ,TouchableOpacity, Modal, KeyboardAvoidingView,Animated} fr
 import { MaterialIcons } from '@expo/vector-icons';
 import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider, HueSlider } from 'reanimated-color-picker';
 import  Swipeable  from 'react-native-gesture-handler/Swipeable';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 
 import { ListItem } from'../components/ListItem';
@@ -47,9 +47,6 @@ const Categorias = ({}) =>{
     setSelectedColor(theme.colors.primary);
 
   }
-  const deleteCategoria = useCallback((id:string) =>{
-    
-  },[])
   
     return(
         <> 
@@ -59,7 +56,7 @@ const Categorias = ({}) =>{
             style={{ flex: 1, margin:16 }}
         >
         
-        
+        <ScrollView style={{flex:1}}>
         <View style={{flexDirection: 'column', borderRadius: 11, overflow: 'hidden'}}>
         
                 {categorias.map(({id,color,name})=>(
@@ -89,9 +86,10 @@ const Categorias = ({}) =>{
                  
                     
 
-                ))}       
+                ))}
+                      
          </View>
-         <View style={{flex:1}}/>
+         </ScrollView> 
          <View style={{display: 'flex', flexDirection:'row', paddingHorizontal:8, paddingVertical: 8,alignItems:'center'}}>
             
             <TouchableOpacity onPress={()=>setShowColorPicker(!showColorPicker)}>
@@ -122,10 +120,7 @@ const Categorias = ({}) =>{
         <Button title='Ok' onPress={() => setShowColorPicker(false)} />
         
       </Modal>
-      </>
-            
-
-        
+      </>  
     )
 }
 

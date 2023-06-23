@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Casa from '../Screens/Casa';
 import Categorias from '../Screens/Categorias';
+import Ahorro from '../Screens/Ahorro';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ function Navigation() {
       <Stack.Navigator>
       <Stack.Screen name="Casa" component={Casa} options={{headerShown:false}}/>
       <Stack.Screen name="Categorias" component={Categorias} />
+      <Stack.Screen name="Ahorro" component={Ahorro} />
     </Stack.Navigator>
    
     </NavigationContainer>

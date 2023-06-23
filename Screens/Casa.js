@@ -46,7 +46,7 @@ const Casa = ({navigate}) =>{
           name="Home" component={Home}/>
          <Tab.Screen name="Ingreso" component={Ingreso} />
          <Tab.Screen name="Balances" component={Balances} />
-         <Tab.Screen name="Settings" component={Settings} />
+         <Tab.Screen name="More" component={Settings} />
        </Tab.Navigator>
     );
 }

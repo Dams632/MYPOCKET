@@ -26,25 +26,25 @@ export const ListItem = (
         onDelete,
         isDestructive,
     }:Props) => {
-        const item = useMemo(()=>( <TouchableOpacity
+        const item = useMemo(()=>( 
+        <TouchableOpacity
             style={{
                 flexDirection: 'row',
                 justifyContent: !!detail ? 'space-between' :'flex-start' ,
                 alignItems: 'center',
-                padding: 20,
+                padding: 12,
                 borderBottomColor: theme.colors.border,
                 borderBottomWidth: 1,
                 backgroundColor: theme.colors.card,
                 width: '100%'
-
-                
             }}
             onPress={onClick}
+            disabled={!onClick}
         >
             <Text style={{fontSize:18, color:'white'}}>{label}</Text>
             {detail}
         </TouchableOpacity>),
-        []);
+        [label, detail]);
         
         if(swipeToDelete){
             return(<Swipeable
