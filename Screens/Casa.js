@@ -6,10 +6,11 @@ import { Icon } from 'react-native-elements';
 
 
 
-import Home from '../Screens/Home';
+import ExpensesList from '../components/ExpensesList';
 import Ingreso from '../Screens/Ingreso';
 import Settings from '../Screens/Settings';
 import Balances from '../Screens/Balances';
+import { Expenses } from './Expenses';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,7 @@ const Tab = createBottomTabNavigator();
 const Casa = ({navigate}) =>{
     return(
     <Tab.Navigator 
-         initialRouteName="home"
+         initialRouteName="balances"
          tabBarOptions={{
            activeTintColor: theme.colors.primary,
            inactiveTintColor: theme.colors.secondary,
@@ -43,7 +44,7 @@ const Casa = ({navigate}) =>{
                
                
          }}
-          name="Home" component={Home}/>
+          name="Home" component={Expenses}/>
          <Tab.Screen name="Ingreso" component={Ingreso} />
          <Tab.Screen name="Balances" component={Balances} />
          <Tab.Screen name="More" component={Settings} />
