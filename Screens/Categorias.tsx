@@ -37,13 +37,12 @@ const Categorias = ({}) =>{
     });
     setNewName('');
     setSelectedColor(theme.colors.primary);
-
   }
 
   const deleteCategory = (id: BSON.ObjectId) => {
     realm.write(() => {
-        const categoryss = realm.objectForPrimaryKey('Category',id);
-        realm.delete(categoryss);
+        const category = realm.objectForPrimaryKey('Category',id);
+        realm.delete(category);
     });
   };
 

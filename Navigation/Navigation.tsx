@@ -3,10 +3,12 @@ import { theme } from '../themes/inex';
 import { StatusBar } from 'expo-status-bar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+
 import Casa from '../Screens/Casa';
 import Categorias from '../Screens/Categorias';
 import Ahorro from '../Screens/Ahorro';
 import RealmContext from '../realm'
+import Realm from "realm";
 
 const Stack = createNativeStackNavigator();
 const {RealmProvider}= RealmContext

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import ExpensesList from './components/ExpensesList';
 import Navigation from './Navigation/Navigation';
+import Realm from "realm";
 
 import {useFonts} from 'expo-font';
 

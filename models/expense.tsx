@@ -7,30 +7,30 @@ export class Expense extends Realm.Object{
     amount : number;
     recurrence:string;
     date: Date;
-    description: string;
+    note: string;
     category: Category;
     
 
-    static generate(amount: number,recurrence: Recurrence,date:Date,description:string, category: Category){
+    static generate(amount: number,recurrence: Recurrence,date:Date,note:string, category: Category){
         return{
             _id: new Realm.BSON.ObjectId(),
             amount,
             recurrence: recurrence.toString(),
             date,
-            description,
+            note,
             category,
         };
     }
 
     static schema={
-        name: 'Expense',
+        name: 'Gasto',
         primaryKey: '_id',
         properties: {
             _id: 'objectId',
             amount:  'int',
             recurrence:' string',
             date: 'Date',
-            description: ' string',
+            note: ' string',
             category: 'Category ?',
             
         }

@@ -25,7 +25,7 @@ const {useQuery, useRealm}= RealmContext
     const [date,setDate]= React.useState(new Date())
     const [recurrence,setRecurrence]= React.useState(Recurrence.Ninguno)
     const [sheetView,setSheetView]=React.useState<'recurrence'|'fecha'| 'categoria'>('recurrence');
-    const [category,setCategory]= React.useState<Category>(CATEGORIES[0])
+    const [category,setCategory]= React.useState<Category>(categories[0])
     const [desc,setDesc]= React.useState()
     const snapPoints = useMemo(()=> ['25%','50%','75%'],[])
     const sheetRef = useRef<BottomSheet>(null)
