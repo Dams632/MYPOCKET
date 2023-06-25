@@ -1,52 +1,53 @@
-import React , {useCallback, useState} from 'react';
-import  Entypo  from '@expo/vector-icons/Entypo';
-import { View,Button ,TouchableOpacity, Modal, KeyboardAvoidingView,Animated} from 'react-native';
+import React , {useState} from 'react';
+import { View,Button ,TouchableOpacity, Modal, KeyboardAvoidingView} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import ColorPicker, { Panel1, Swatches, Preview, OpacitySlider, HueSlider } from 'reanimated-color-picker';
 import  Swipeable  from 'react-native-gesture-handler/Swipeable';
 import { GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 
-import { ListItem } from'../components/ListItem';
+
 import { RectButton, TextInput } from 'react-native-gesture-handler';
 import { theme } from '../themes/inex';
-import {Category}  from '../types/category';
-
+import RealmContext from '../realm'
 import { CategoriasRow } from '../components/CategoriasRow';
+import { Category } from '../models/category';
+import { BSON } from 'realm';
 
 
+const {useQuery,useRealm}= RealmContext;
 
 const Categorias = ({}) =>{
     const [showColorPicker, setShowColorPicker] = useState(false);
     const [selectedColor,setSelectedColor]= useState(theme.colors.primary);
-    const [newName,setNewName]= useState('')
-    const [categorias,setCategorias] = useState<Category[]>([{
-        id: '1',
-        color: theme.colors.primary,
-        name: 'golosinas'},
-        {
-            id:'2',
-            color: theme.colors.card,
-            name: 'ropa'
-        }
-    ]);
+    const [newName,setNewName]= useState('');
+    const realm = useRealm()
+    const categoriasz = useQuery(Category);
 
-  const onSelectColor = ({ hex }) => {
+  const onSelectColor = ({ hex }) => { 
     setSelectedColor(hex);
   };
   const crearCategoria= () =>{
     if(newName.length === 0){
         return;
     }
-    setCategorias([...categorias,{
-        id: Math.random().toString(),
-        color: selectedColor,
-        name:newName,
-    }]);
+    realm.write(() => {
+        realm.create('Category', Category.generate(newName,selectedColor))
+
+    });
     setNewName('');
     setSelectedColor(theme.colors.primary);
 
   }
+
+  const deleteCategory = (id: BSON.ObjectId) => {
+    realm.write(() => {
+        const categoryss = realm.objectForPrimaryKey('Category',id);
+        realm.delete(categoryss);
+    });
+  };
+
+  
   
     return(
         <> 
@@ -59,9 +60,9 @@ const Categorias = ({}) =>{
         <ScrollView style={{flex:1}}>
         <View style={{flexDirection: 'column', borderRadius: 11, overflow: 'hidden'}}>
         
-                {categorias.map(({id,color,name})=>(
+                {categoriasz.map(({_id,color,name})=>(
                     <GestureHandlerRootView>
-                    <Swipeable key={id} 
+                    <Swipeable key={_id.toHexString()} 
                         renderRightActions={() => {
                         return(
                             <View
@@ -71,7 +72,8 @@ const Categorias = ({}) =>{
                                 }}
                             >
                             <RectButton style={{backgroundColor:theme.colors.error ,justifyContent:'center', alignItems: 'center', flex:1}} 
-                            onPress={() => setCategorias(categorias.filter((categoria) => categoria.id!== id))}>
+                            onPress={() => deleteCategory(_id)}
+                            >
                                <Ionicons name="trash-outline" size={30} color="white"  />
                             </RectButton>
                             </View>

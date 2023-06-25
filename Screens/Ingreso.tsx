@@ -2,36 +2,26 @@ import React,{useMemo, useRef} from 'react';
 import { KeyboardAvoidingView, TextInput, View , Text, TouchableOpacity, Platform} from 'react-native';
 import { ListItem } from '../components/ListItem';
 import { theme } from '../themes/inex';
-import { gestureHandlerRootHOC, ScrollView } from 'react-native-gesture-handler';
-import  {Category}  from '../types/category';
-import DatePicker from 'react-native-date-picker'
+import { ScrollView } from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import RealmContext from '../realm'
 
-import { Picker, type PickerItem } from 'react-native-woodpicker'
-//import {Picker} from '@react-native-picker/picker';
 import { Recurrence } from '../types/recurrence';
 import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import Categorias from './Categorias';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
-import { Button } from 'react-native-elements/dist/buttons/Button';
-//import { Picker,onOpen } from 'react-native-actions-sheet-picker';
+import { Category } from '../models/category';
+import { Expense } from '../models/expense';
 
 
+
+const {useQuery, useRealm}= RealmContext
 
 
  const Ingresar = () => {
+    const realm=useRealm()
+    const categories = useQuery(Category)
     const [Amount,setAmount]= React.useState('')
-    const CATEGORIES: Category[]=[{
-
-        id:'1',
-        name:'Food',
-        color:"#898889"
-    },{
-        id:'2',
-        name:'candyes',
-        color:"#898832"
-    },
-]
+   
     const [date,setDate]= React.useState(new Date())
     const [recurrence,setRecurrence]= React.useState(Recurrence.Ninguno)
     const [sheetView,setSheetView]=React.useState<'recurrence'|'fecha'| 'categoria'>('recurrence');
@@ -51,6 +41,17 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
         
     }
 
+    const submitExpense =()=>{
+        realm.write(()=>{
+    
+            realm.create('Expense',Expense.generate (parseFloat(Amount),recurrence,date,desc,category))    
+    
+        } )  
+         
+
+
+        
+    }
     
     return(
         <>
@@ -177,9 +178,12 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
                 paddingVertical:13,
                 borderRadius: 10,
                 marginTop: 32,
+                
 
 
-            }}>
+                }}
+                onPress={submitExpense}
+            >
                 <Text style={{color:'white', fontWeight:'600', fontSize:20}}>Añadir</Text>
                     
             </TouchableOpacity>
@@ -224,8 +228,8 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
                 style={{
                     backgroundColor: theme.colors.card
                 }} 
-                    data={CATEGORIES}
-                    keyExtractor={({id})=>id}
+                    data={categories}
+                    keyExtractor={({_id})=>_id.toHexString()}
                     renderItem={({item})=> (
                     <TouchableOpacity 
                         onPress={()=>selectCategoria(item)}

@@ -6,13 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Casa from '../Screens/Casa';
 import Categorias from '../Screens/Categorias';
 import Ahorro from '../Screens/Ahorro';
+import RealmContext from '../realm'
 
 const Stack = createNativeStackNavigator();
+const {RealmProvider}= RealmContext
 
 function Navigation() {
 
 
   return (
+    <RealmProvider>
     <NavigationContainer theme={theme}>
       <StatusBar style='light'/>
       <Stack.Navigator>
@@ -22,6 +25,7 @@ function Navigation() {
     </Stack.Navigator>
    
     </NavigationContainer>
+    </RealmProvider>
   
   );
 }

@@ -80,7 +80,7 @@ export const Reports = ({sheetRef}: Props) =>{
                     name: 'Food',
                     color: '#FFD600',
                 },
-                date: new Date("2023-01-12T00:00:00.000z"),
+                date: new Date("2023-01-12T00:00:00.000"),
                 note: 'Compre algo de comida',
                 recurrence: Recurrence.Ninguno,
             
@@ -92,7 +92,7 @@ export const Reports = ({sheetRef}: Props) =>{
                     name: 'Transport',
                     color: '#848493',
                 },
-                date: new Date("2023-01-13T00:00:00.000z"),
+                date: new Date("2023-01-13T00:00:00.000"),
                 note: 'Compre algo de comida',
                 recurrence: Recurrence.Ninguno,
             },{
@@ -103,7 +103,7 @@ export const Reports = ({sheetRef}: Props) =>{
                     name: 'clothes',
                     color: '#FFD600',
                 },
-                date: new Date("2023-01-14T00:00:00.000z"),
+                date: new Date("2023-01-14T00:00:00.000"),
                 note: 'Compre algo de comida',
                 recurrence: Recurrence.Ninguno,
             }],
@@ -119,7 +119,7 @@ export const Reports = ({sheetRef}: Props) =>{
                     name: 'casa',
                     color: '#FFD600',
                 },
-                date: new Date("2023-01-15T00:00:00.000z"),
+                date: new Date("2023-01-15T00:00:00.000"),
                 note: 'Compre algo de comida',
                 recurrence: Recurrence.Ninguno,
             
@@ -131,7 +131,7 @@ export const Reports = ({sheetRef}: Props) =>{
                     name: 'Trabajo',
                     color: '#848493',
                 },
-                date: new Date("2023-01-16T00:00:00.000z"),
+                date: new Date("2023-01-16T00:00:00.000"),
                 note: 'Compre algo de comida',
                 recurrence: Recurrence.Ninguno,
             },{
@@ -142,7 +142,7 @@ export const Reports = ({sheetRef}: Props) =>{
                     name: 'lolll',
                     color: '#FFD600',
                 },
-                date: new Date("2023-01-12T00:00:00.000z"),
+                date: new Date("2023-01-12T00:00:00.000"),
                 note: 'Compre algo de comida',
                 recurrence: Recurrence.Ninguno,
             },{
@@ -153,7 +153,7 @@ export const Reports = ({sheetRef}: Props) =>{
                     name: 'lolll',
                     color: '#FFD600',
                 },
-                date: new Date("2023-01-12T00:00:00.000z"),
+                date: new Date("2023-01-12T20:00:00.000"),
                 note: 'Compre algo de comida',
                 recurrence: Recurrence.Ninguno,
             }],
